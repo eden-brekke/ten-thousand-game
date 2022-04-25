@@ -1,6 +1,6 @@
 
 import pytest
-from ten_thousand.banker import Banker
+from ten_thousand.game_logic import Banker
 
 pytestmark = [pytest.mark.version_1, pytest.mark.version_2]
 
