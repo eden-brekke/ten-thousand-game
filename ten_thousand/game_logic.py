@@ -77,9 +77,10 @@ class Banker:
         """
         add any points on the shelf to the total and reset the shelf
         """
+        amount_deposited = self.shelved
         self.balance += self.shelved
         self.shelved = 0
-        return self.balance
+        return amount_deposited
 
     def clear_shelf(self):
         self.shelved = 0
