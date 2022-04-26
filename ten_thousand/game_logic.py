@@ -1,6 +1,4 @@
 from collections import Counter
-from distutils.log import error
-from operator import countOf
 import random
 
 
