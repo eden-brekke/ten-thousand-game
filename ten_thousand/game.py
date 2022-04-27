@@ -50,9 +50,6 @@ class Game:
                                 current_dice = 6
 
 
-
-
-
 if __name__ == "__main__":
     game = Game()
     game.play()
