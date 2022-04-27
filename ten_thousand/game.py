@@ -13,8 +13,6 @@ class Game:
         if response == "n":
             print("OK. Maybe another time")
         elif response == "y":
-            # shelved = self.bank.shelved
-            # banked_score = self.bank.balance
             score = 0
             round = 1
             current_dice = 6
@@ -33,8 +31,6 @@ class Game:
                         dice_to_keep = [int(num) for num in keep_or_quit]
                         dice_to_keep = tuple(dice_to_keep)
                         score = GameLogic.calculate_score(dice_to_keep)
-                        # score = GameLogic.calculate_score(roller(current_dice))
-                        # shelved = self.bank.shelf(score)
                         self.bank.shelf(score)
                         current_dice = current_dice - len(dice_to_keep)
                         print(f"You have {self.bank.shelved} unbanked points and {current_dice} dice remaining")
@@ -48,11 +44,7 @@ class Game:
                                 round += 1
                                 continue
                             elif roll_bank_quit == "b":
-                                # self.bank.bank()
                                 print(f"You banked {self.bank.bank()} points in round {round}")
-                                # self.bank.clear_shelf()
-                                # score += self.bank.balance
-                                # total_score += self.bank.balance
                                 print(f"Total score is {self.bank.balance} points")
                                 round += 1
                                 current_dice = 6
