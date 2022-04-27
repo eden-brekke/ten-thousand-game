@@ -59,6 +59,22 @@ class GameLogic:
             roll_dice_list.append(random.randint(1, 6))
         return tuple(roll_dice_list)
 
+    @staticmethod
+    def validate_keepers(roll, keepers):
+        roll_most_common = Counter(roll).most_common()
+        keeper_most_common = Counter(keepers).most_common()
+        for i in range(len(keeper_most_common)):
+            if keeper_most_common[i][1] > roll_most_common[i][1]:
+                return False
+            else:
+                return True
+
+# 112333
+# [(3, 3), (1, 2), (2, 1)]
+
+
+
+
 
 class Banker:
     def __init__(self):
@@ -85,3 +101,4 @@ class Banker:
     def clear_shelf(self):
         self.shelved = 0
         return self.shelved
+
