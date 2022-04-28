@@ -1,4 +1,4 @@
-# LAB - Class 06 & 07
+# LAB - Class 06 & 07 & 08
 
 ## Project: Ten Thousand Game
 Author: Cole Gibbs and Eden Brekke
