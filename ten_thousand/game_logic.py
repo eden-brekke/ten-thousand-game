@@ -68,6 +68,9 @@ class GameLogic:
                 return False
             else:
                 return True
+    
+    def get_scorers(input):
+      pass
 
 # 112333
 # [(3, 3), (1, 2), (2, 1)]
