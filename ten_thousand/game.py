@@ -37,7 +37,7 @@ class Game:
                 roll = roller(self.current_dice)
                 self.print_roll(roll)
                 if not GameLogic.calculate_score(roll):
-                    self.zilch()
+                    self.zilch(roller)
                 print("Enter dice to keep, or (q)uit:")
                 keep_or_quit = input("> ").lower().replace(" ", "")
                 if keep_or_quit == "q":
@@ -86,7 +86,7 @@ class Game:
             dice_to_keep = tuple(dice_to_keep)
             return dice_to_keep
 
-    def zilch(self):
+    def zilch(self, roller):
         print("****************************************")
         print("**        Zilch!!! Round over         **")
         print("****************************************")
@@ -94,7 +94,7 @@ class Game:
         print(f"Total score is {self.bank.balance} points")
         self.current_dice = 6
         self.bank.clear_shelf()
-        self.play()
+        self.play(roller)
 
 
 if __name__ == "__main__":
