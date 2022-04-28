@@ -68,9 +68,16 @@ class GameLogic:
                 return False
             else:
                 return True
-    
-    def get_scorers(input):
-      pass
+
+    @staticmethod
+    def get_scorers(dice):
+        dice_list = []
+        for num in dice:
+            if num == 1:
+                dice_list.append(num)
+            elif num == 5:
+                dice_list.append(num)
+        return tuple(dice_list)
 
 # 112333
 # [(3, 3), (1, 2), (2, 1)]
