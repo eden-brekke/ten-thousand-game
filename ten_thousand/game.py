@@ -4,7 +4,7 @@ import sys
 
 class Game:
 
-    def __init__(self, roller=None):
+    def __init__(self):
         self.bank = Banker()
         self.round = 0
         self.current_dice = 6
@@ -19,7 +19,7 @@ class Game:
     def welcome(self):
         print("Welcome to Ten Thousand")
         print("(y)es to play or (n)o to decline")
-        self.response = input("> ")
+        self.response = input("> ").replace(" ", "")
         if self.response == "n":
             print("OK. Maybe another time")
         else:
@@ -28,11 +28,6 @@ class Game:
     def play(self, roller=GameLogic.roll_dice):
         if self.round == 0 and self.bank.shelved == 0:
             self.response = self.welcome()
-            # print("Welcome to Ten Thousand")
-            # print("(y)es to play or (n)o to decline")
-            # response = input("> ")
-            # if response == "n":
-            #     print("OK. Maybe another time")
         if self.response == "y":
             while True:
                 if not self.bank.shelved:
@@ -43,12 +38,8 @@ class Game:
                 self.print_roll(roll)
                 if not GameLogic.calculate_score(roll):
                     self.zilch()
-                # while True:
-                # roll_input = ' '.join(map(str, roll))
-                # print(f"*** {roll_input} ***")
-                # .replace("(","").replace(",","").replace(")", "").replace("[","").replace("]", ""))
                 print("Enter dice to keep, or (q)uit:")
-                keep_or_quit = input("> ").lower()
+                keep_or_quit = input("> ").lower().replace(" ", "")
                 if keep_or_quit == "q":
                     print(f"Thanks for playing. You earned {self.bank.balance} points")
                     sys.exit()
@@ -63,7 +54,7 @@ class Game:
                     if len(dice_to_keep) <= 6 and GameLogic.validate_keepers(roll, dice_to_keep):
                         print(f"You have {self.bank.shelved} unbanked points and {self.current_dice} dice remaining")
                         print("(r)oll again, (b)ank your points or (q)uit:")
-                        roll_bank_quit = input("> ")
+                        roll_bank_quit = input("> ").replace(" ", "")
                         if roll_bank_quit == "q":
                             print(f"Thanks for playing. You earned {self.bank.balance} points")
                             sys.exit()
@@ -86,9 +77,10 @@ class Game:
         print("Cheater!!! Or possibly made a typo...")
         self.print_roll(roll)
         print("Enter dice to keep, or (q)uit:")
-        keep_or_quit = input("> ").lower()
+        keep_or_quit = input("> ").lower().replace(" ", "")
         if keep_or_quit == "q":
-            self.quit_game()
+            print(f"Thanks for playing. You earned {self.bank.balance} points")
+            sys.exit()
         else:
             dice_to_keep = [int(num) for num in keep_or_quit]
             dice_to_keep = tuple(dice_to_keep)
