@@ -1,5 +1,5 @@
 from collections import Counter
-import random
+from random import randint
 
 
 class GameLogic:
@@ -53,11 +53,12 @@ class GameLogic:
         return score
 
     @staticmethod
-    def roll_dice(number):
-        roll_dice_list = []
-        for i in range(number):
-            roll_dice_list.append(random.randint(1, 6))
-        return tuple(roll_dice_list)
+    def roll_dice(number=6):
+        # roll_dice_list = []
+        # for i in range(number):
+        #     roll_dice_list.append(random.randint(1, 6))
+
+        return tuple([randint(1, 6) for _ in range(number)])
 
     @staticmethod
     def validate_keepers(roll, keepers):
@@ -81,9 +82,6 @@ class GameLogic:
 
 # 112333
 # [(3, 3), (1, 2), (2, 1)]
-
-
-
 
 
 class Banker:
