@@ -4,15 +4,18 @@ import sys
 
 class Game:
 
-    def __init__(self):
+    def __init__(self, num_rounds=5):
         self.bank = Banker()
         self.round = 0
         self.current_dice = 6
         self.score = 0
         self.cheater = False
         self.response = ""
+        self.num_rounds = num_rounds
+        self.num_games = None
 
-    def print_roll(self, roll):
+    @staticmethod
+    def print_roll(roll):
         roll_input = ' '.join(map(str, roll))
         print(f"*** {roll_input} ***")
 
@@ -25,11 +28,15 @@ class Game:
         else:
             return self.response
 
-    def play(self, roller=GameLogic.roll_dice):
+    def play(self, num_games=1, roller=GameLogic.roll_dice):
+        self.num_games = num_games
         if self.round == 0 and self.bank.shelved == 0:
             self.response = self.welcome()
         if self.response == "y":
             while True:
+                if self.round == self.num_rounds:
+                    print(f"Thanks for playing. You earned {self.bank.balance} points")
+                    sys.exit()
                 if not self.bank.shelved:
                     self.round += 1
                     print(f"Starting round {self.round}")
@@ -71,7 +78,6 @@ class Game:
         print(f"You banked {self.bank.bank()} points in round {self.round}")
         print(f"Total score is {self.bank.balance} points")
         self.current_dice = 6
-
 
     def cheater_found(self, roll):
         print("Cheater!!! Or possibly made a typo...")
