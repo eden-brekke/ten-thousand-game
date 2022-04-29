@@ -1,5 +1,6 @@
 from collections import Counter
 from random import randint
+from unittest import result
 
 
 class GameLogic:
@@ -62,13 +63,17 @@ class GameLogic:
 
     @staticmethod
     def validate_keepers(roll, keepers):
-        roll_most_common = Counter(roll).most_common()
-        keeper_most_common = Counter(keepers).most_common()
-        for i in range(len(keeper_most_common)):
-            if keeper_most_common[i][1] > roll_most_common[i][1]:
-                return False
-            else:
-                return True
+        keep_counter = Counter(keepers)
+        roll_counter = Counter(roll)
+        results = keep_counter - roll_counter
+        return not results
+        # roll_most_common = Counter(roll).most_common()
+        # keeper_most_common = Counter(keepers).most_common()
+        # for i in range(len(keeper_most_common)):
+        #     if keeper_most_common[i][1] > roll_most_common[i][1]:
+        #         return False
+        #     else:
+        #         return True
 
     @staticmethod
     def get_scorers(dice):
