@@ -138,12 +138,23 @@ class NervousNellie(BaseBot):
 
 class KrazyKid(BaseBot):
     def _roll_bank_or_quit(self):
-        if self.unbanked_points >= 10:
+        if self.unbanked_points >= 300:
             return "b"
         if self.dice_remaining >= 3:
             return "r"
         else:
             return "b"
+
+
+class RiskyRizzo(BaseBot):
+    def _roll_bank_or_quit(self):
+        if self.unbanked_points >= 700:
+            return "b"
+        elif self.unbanked_points >= 400 and self.dice_remaining <= 2:
+            return "b"
+        elif self.dice_remaining == 1:
+            return "b"
+        return "r"
 
     def _enter_dice(self):
         """simulate user entering which dice to keep.
@@ -153,6 +164,7 @@ class KrazyKid(BaseBot):
 
 
 if __name__ == "__main__":
-    num_games = 1
+    num_games = 100
     NervousNellie.play(num_games)
     KrazyKid.play(num_games)
+    RiskyRizzo.play(num_games)

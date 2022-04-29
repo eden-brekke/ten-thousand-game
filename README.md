@@ -4,7 +4,10 @@
 Author: Cole Gibbs and Eden Brekke
 
 ## Links and Resources
-JB's instruction :) 
+JB's instruction :)  
+TA's Guidance  
+Tai helped us with refactoring and troubleshooting quite a bit. Thanks Tai <3 You're a superstar  
+
 
 ## Setup
 Create Python virtual environment (py(or python3) -m venv .venv)  

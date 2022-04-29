@@ -1,6 +1,5 @@
 from collections import Counter
 from random import randint
-from unittest import result
 
 
 class GameLogic:
@@ -55,10 +54,6 @@ class GameLogic:
 
     @staticmethod
     def roll_dice(number=6):
-        # roll_dice_list = []
-        # for i in range(number):
-        #     roll_dice_list.append(random.randint(1, 6))
-
         return tuple([randint(1, 6) for _ in range(number)])
 
     @staticmethod
@@ -67,26 +62,19 @@ class GameLogic:
         roll_counter = Counter(roll)
         results = keep_counter - roll_counter
         return not results
-        # roll_most_common = Counter(roll).most_common()
-        # keeper_most_common = Counter(keepers).most_common()
-        # for i in range(len(keeper_most_common)):
-        #     if keeper_most_common[i][1] > roll_most_common[i][1]:
-        #         return False
-        #     else:
-        #         return True
 
     @staticmethod
     def get_scorers(dice):
-        dice_list = []
-        for num in dice:
-            if num == 1:
-                dice_list.append(num)
-            elif num == 5:
-                dice_list.append(num)
-        return tuple(dice_list)
-
-# 112333
-# [(3, 3), (1, 2), (2, 1)]
+        dice_score = GameLogic.calculate_score(dice)
+        if dice_score == 0:
+            return tuple()
+        scorers = []
+        for i, val in enumerate(dice):
+            sub_roll = dice[:i] + dice[i + 1 :]
+            sub_score = GameLogic.calculate_score(sub_roll)
+            if sub_score != dice_score:
+                scorers.append(val)
+        return tuple(scorers)
 
 
 class Banker:

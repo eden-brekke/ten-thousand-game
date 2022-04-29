@@ -5,7 +5,7 @@ import sys
 
 class Game:
 
-    def __init__(self, num_rounds=5):
+    def __init__(self, num_rounds=20):
         self.bank = Banker()
         self.round = 0
         self.current_dice = 6
@@ -46,14 +46,12 @@ class Game:
                     self.round += 1
                     print(f"Starting round {self.round}")
                     self.play_round()
+
     def play_round(self):
         print(f"Rolling {self.current_dice} dice...")
         self.roll = self.roller(self.current_dice)
         self.caught_cheater()
-        # if hot dice then bank the points for hot dice and roll again
-        # if Counter(roll).most_common() == 6:
-        #     self.bank.bank(1500)
-        #     roll = roller(self.current_dice)
+
     def caught_cheater(self):
         self.dice_to_keep = []
         self.print_roll(self.roll)
@@ -85,11 +83,11 @@ class Game:
                 elif roll_bank_quit == "b":
                     self.bank_dice()
             else:
-                self.cheater_found(self.roll)
+                self.cheater_found()
 
     def end_game(self):
-         print(f"Thanks for playing. You earned {self.bank.balance} points")
-         sys.exit()
+        print(f"Thanks for playing. You earned {self.bank.balance} points")
+        sys.exit()
 
     def bank_dice(self):
         print(f"You banked {self.bank.bank()} points in round {self.round}")
@@ -102,16 +100,6 @@ class Game:
     def cheater_found(self):
         print("Cheater!!! Or possibly made a typo...")
         self.caught_cheater()
-        # self.print_roll(roll)
-        # print("Enter dice to keep, or (q)uit:")
-        # keep_or_quit = input("> ").lower().replace(" ", "")
-        # if keep_or_quit == "q":
-        #     print(f"Thanks for playing. You earned {self.bank.balance} points")
-        #     sys.exit()
-        # else:
-        #     dice_to_keep = [int(num) for num in keep_or_quit]
-        #     dice_to_keep = tuple(dice_to_keep)
-        #     return dice_to_keep
 
     def zilch(self):
         print("****************************************")
